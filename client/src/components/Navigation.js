@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import { useTokenContext } from "../lib/GlobalState";
 
 export function Navigation() {
 
-    const [state, _] = useTokenContext();
+    const [state, _] = useTokenContext()
 
     return (
         <nav>

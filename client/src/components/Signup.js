@@ -39,7 +39,7 @@ export function SignUp(props) {
       <h2>Sign Up</h2>
       <form onSubmit={handleFormSubmit}>
         <div>
-          <label>Clinic Name: </label>
+          <label>Username</label>
           <input
             type="text"
             name="clinicName"
