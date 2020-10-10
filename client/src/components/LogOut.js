@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
-import {Redirect} from 'react-router-dom'
-export function LogOut() {
-    useEffect(() => {
-        localStorage.removeItem("token");
+import {Redirect} from 'react-router-dom';
+import { useTokenContext } from "../lib/GlobalState";
 
+export function LogOut() {
+    const [_, dispatch] = useTokenContext();
+    useEffect(() => {
+        dispatch({
+            type: "removeToken"
+        })
     }, [])
     
     return(

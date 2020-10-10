@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { isAuthenticated } from "../lib";
 import { Redirect } from "react-router-dom";
+import { useTokenContext } from "../lib/GlobalState";
 
 export function LogIn(props){
     const usernameRef = useRef();
     const passwordRef = useRef();
+
+    const [_, dispatch] = useTokenContext();
 
     const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
 
@@ -21,7 +24,13 @@ export function LogIn(props){
             body: params
         }).then(body => body.json())
             .then(data => {
-                localStorage.setItem("token", data.token);
+                console.log(data.token);
+                if (data.token === undefined) return 
+                dispatch({
+                    type: "setToken",
+                    token: data.token
+                })
+                // localStorage.setItem("token", data.token);
                 setIsLoggedIn(true);
             })
             .catch(error => console.error(error))

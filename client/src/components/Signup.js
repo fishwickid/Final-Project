@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import { isAuthenticated } from "../lib";
+import { useTokenContext } from "../lib/GlobalState";
 import { Redirect } from "react-router-dom";
 
 export function SignUp(props) {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
+  const [_, dispatch] = useTokenContext();
   const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
 
   const handleFormSubmit = (event) => {
@@ -21,9 +23,10 @@ export function SignUp(props) {
     })
       .then((body) => body.json())
       .then((data) => {
-        //my auto formatting makes it look a bit different
-        if (data.token === undefined) return;
-        localStorage.setItem("token", data.token);
+        dispatch({
+          type: "setToken",
+          token: data.token,
+        });
         setIsLoggedIn(true);
       })
       .catch((error) => console.error(error));
@@ -36,10 +39,10 @@ export function SignUp(props) {
       <h2>Sign Up</h2>
       <form onSubmit={handleFormSubmit}>
         <div>
-          <label>Username: </label>
+          <label>Clinic Name: </label>
           <input
             type="text"
-            name="username"
+            name="clinicName"
             pattern=".{2,20}"
             ref={usernameRef}
             required
