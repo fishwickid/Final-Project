@@ -1,3 +1,6 @@
 export { Home } from "./Home";
-export { Login } from "./Login";
-export { Signup } from "./Signup";
+export { SignUp } from "./SignUp";
+export { LogIn } from "./LogIn";
+export { LogOut } from "./LogOut";
+export { Navigation } from "./Navigation";
+export { PrivateRoute } from "./PrivateRoute";

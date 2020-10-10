@@ -1,31 +1,51 @@
-import React from "react";
+import React, { useRef, useState } from 'react';
+import { isAuthenticated } from "../lib";
+import { Redirect } from "react-router-dom";
 
-export const Login = () => {
-  return (
-    <form>
-      <div className="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input
-          type="email"
-          className="form-control"
-          id="email-input"
-          placeholder="Email"
-        />
-      </div>
-      <div className="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input
-          type="password"
-          className="form-control"
-          id="password-input"
-          placeholder="Password"
-        />
-      </div>
-      <button type="submit" className="btn btn-default">
-        Login
-      </button>
-    </form>
-  );
-};
+export function LogIn(props){
+    const usernameRef = useRef();
+    const passwordRef = useRef();
 
-export default Login;
+    const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
+
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const params = new URLSearchParams()
+        params.append('username', usernameRef.current.value)
+        params.append('password', passwordRef.current.value)
+
+        fetch("/api/login", {
+            method: "POST",
+            body: params
+        }).then(body => body.json())
+            .then(data => {
+                localStorage.setItem("token", data.token);
+                setIsLoggedIn(true);
+            })
+            .catch(error => console.error(error))
+    }
+
+    return (
+        isLoggedIn ? <Redirect to={{ pathname: "/", state: { from: props.location } }} /> :
+            <div>
+                <h2>Log In</h2>
+                <form onSubmit={handleFormSubmit}>
+                    <div>
+                        <label>Username: </label>
+                        <input type="text" name="username" pattern=".{2,20}" ref={usernameRef} required />
+                    </div>
+                    <div>
+                        <label>Password: </label>
+                        <input type="password" name="password" ref={passwordRef} required />
+                    </div>
+                    <div>
+                        <input type="submit" value="Log In" />
+                    </div>
+                </form>
+            </div>
+    )
+}
+
+export default LogIn;
