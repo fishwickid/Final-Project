@@ -1,60 +1,68 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import { isAuthenticated } from "../lib";
 import { Redirect } from "react-router-dom";
 import { useTokenContext } from "../lib/GlobalState";
 
-export function LogIn(props){
-    const usernameRef = useRef();
-    const passwordRef = useRef();
+export function LogIn(props) {
+  const usernameRef = useRef();
+  const passwordRef = useRef();
 
-    const [_, dispatch] = useTokenContext();
+  const [_, dispatch] = useTokenContext();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
+  const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated());
 
-    const handleFormSubmit = event => {
-        event.preventDefault();
-        event.stopPropagation();
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
-        const params = new URLSearchParams()
-        params.append('username', usernameRef.current.value)
-        params.append('password', passwordRef.current.value)
+    const params = new URLSearchParams();
+    params.append("username", usernameRef.current.value);
+    params.append("password", passwordRef.current.value);
 
-        fetch("/api/login", {
-            method: "POST",
-            body: params
-        }).then(body => body.json())
-            .then(data => {
-                console.log(data.token);
-                if (data.token === undefined) return 
-                dispatch({
-                    type: "setToken",
-                    token: data.token
-                })
-                // localStorage.setItem("token", data.token);
-                setIsLoggedIn(true);
-            })
-            .catch(error => console.error(error))
-    }
+    fetch("/api/login", {
+      method: "POST",
+      body: params,
+    })
+      .then((body) => body.json())
+      .then((data) => {
+        console.log(data.token);
+        if (data.token === undefined) return;
+        dispatch({
+          type: "setToken",
+          token: data.token,
+        });
+        // localStorage.setItem("token", data.token);
+        setIsLoggedIn(true);
+      })
+      .catch((error) => console.error(error));
+  };
 
-    return (
-        isLoggedIn ? <Redirect to={{ pathname: "/", state: { from: props.location } }} /> :
-            <div>
-                <h2>Log In</h2>
-                <form onSubmit={handleFormSubmit}>
-                    <div>
-                        <label>Username: </label>
-                        <input type="text" name="username" pattern=".{2,20}" ref={usernameRef} required />
-                    </div>
-                    <div>
-                        <label>Password: </label>
-                        <input type="password" name="password" ref={passwordRef} required />
-                    </div>
-                    <div>
-                        <input type="submit" value="Log In" />
-                    </div>
-                </form>
-            </div>
-    )
+  return isLoggedIn ? (
+    <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+  ) : (
+    <div>
+      <h2>Log In</h2>
+      <form onSubmit={handleFormSubmit}>
+        <div>
+          <label>Username: </label>
+          <input
+            type="text"
+            name="username"
+            pattern=".{2,20}"
+            ref={usernameRef}
+            required
+          />
+        </div>
+        <div>
+          <label>Password: </label>
+          <input type="password" name="password" ref={passwordRef} required />
+        </div>
+        <div>
+          <input type="submit" value="Log In" />
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default LogIn;
