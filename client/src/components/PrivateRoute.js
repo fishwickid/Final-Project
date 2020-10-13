@@ -6,9 +6,9 @@ export const PrivateRoute = ({ component : Component, ...rest}) => {
     const [state, _] = useTokenContext();
     return(
         <Route {...rest} render={props => 
-            // !(state.length === 0 || state[0].token === "") ? 
-            (<Component {...props}/> ) 
-            // (<Redirect to={{pathname: "/login", state: {from: props.location}}}/>)
+            !(state.length === 0 || state[0].token === "") ? 
+            (<Component {...props}/> ) :
+            (<Redirect to={{pathname: "/login", state: {from: props.location}}}/>)
             }>
         </Route>
     )

@@ -1,9 +1,13 @@
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-const User = require("../db/models/User");
+const { Book, User } = require("../db/models");
+const path = require("path");
+const apiRoutes = require("./api");
 
 const router = express.Router();
+
+// Authentications Routes
 
 router.post("/signup", (request, response) => {
   const user = new User({
@@ -43,14 +47,33 @@ router.get(
   }
 );
 
-module.exports = router;
+// API Routes
+router.use("/api", apiRoutes);
 
-// ("/user", passport.authenticate(
-//     "jwt",
-//     { session: false }),
-//     (request, response) => {
-//     if (!request.user) {
-//         response.json({clinicname: "nobody"})
-//     } else {
-//         response.json({clinicname: request.user.username})
-//     }
+
+
+// Jam Sesh Routing
+
+// router.get("/api/books", (request, response) => {
+//   console.log("request:" + req.query);
+//   Book.find(req.query)
+//     .sort({ date: -1 })
+//     .then((dbModel) => res.json(dbModel))
+//     .catch((err) => res.status(422).json(err));
+// });
+
+// router.post("/createBook/:formData", function (request, response) {
+//   console.log("params", request.params.formData);
+//   const book = new Book({
+//     title: request.body.title,
+//     author: request.body.author,
+//     synopsis: request.body.synopsis,
+//   });
+//   console.log(book);
+//   book
+//     .save()
+//     .then((dbModel) => response.json(dbModel))
+//     .catch((err) => response.status(422).json(err));
+// });
+
+module.exports = router;
