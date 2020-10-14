@@ -6,16 +6,17 @@ import TextField from "@material-ui/core/TextField";
 
 // Button Styling
 
-const useStyles = makeStyles({
+const buttonStyles = makeStyles({
   root: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     color: "white",
-    height: 48,
+    height: 55,
     width: "80%",
     padding: "0 30px",
+    marginBottom: "30px",
   },
 });
 
@@ -28,7 +29,7 @@ export function Input(props) {
         {...props}
         variant="outlined"
         color="secondary"
-        style={{ width: "80%" }}
+        style={{ width: "80%", margin: "10px" }}
       />
     </div>
   );
@@ -37,13 +38,18 @@ export function Input(props) {
 export function TextArea(props) {
   return (
     <div>
-      <textarea {...props} />
+      <TextField
+        {...props}
+        variant="outlined"
+        color="secondary"
+        style={{ width: "80%", margin: "10px" }}
+      />
     </div>
   );
 }
 
 export function FormBtn(props) {
-  const classes = useStyles();
+  const classes = buttonStyles();
   return (
     <Button
       className={classes.root}
