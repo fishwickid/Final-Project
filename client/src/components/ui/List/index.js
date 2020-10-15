@@ -50,7 +50,7 @@ export function ListItem({ children }) {
       <Card
         className={classes.root}
         variant="outlined"
-        style={{ height: "50px" }}
+        style={{ height: "50px", textAlign: "centre", paddingTop: "20px"}}
       >
         <li className="list-group-item">{children}</li>
       </Card>

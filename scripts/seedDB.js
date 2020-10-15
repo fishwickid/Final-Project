@@ -5,7 +5,7 @@ const db = require("../db/models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/passport");
 
-const bookSeed = [
+const jamSeed = [
   {
     title: "The Dead Zone",
     author: "Stephen King",
@@ -50,8 +50,8 @@ const bookSeed = [
   },
 ];
 
-db.Book.remove({})
-  .then(() => db.Book.collection.insertMany(bookSeed))
+db.Jam.remove({})
+  .then(() => db.Jam.collection.insertMany(jamSeed))
   .then((data) => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

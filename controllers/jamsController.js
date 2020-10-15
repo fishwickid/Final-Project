@@ -3,29 +3,29 @@ const db = require("../db/models");
 // Defining methods for the booksController
 module.exports = {
   findAll: function (req, res) {
-    db.Book.find(req.query)
+    db.Jam.find(req.query)
       .sort({ date: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.Book.findById(req.params.id)
+    db.Jam.findById(req.params.id)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
     console.log("create func", req);
-    db.Book.create(req.body)
+    db.Jam.create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.Book.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Jam.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   remove: function (req, res) {
-    db.Book.findById({ _id: req.params.id })
+    db.Jam.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

@@ -16,7 +16,7 @@ import Grid from "@material-ui/core/Grid";
 
 export function JamSesh() {
   // Setting our component's initial state
-  const [books, setBooks] = useState([]);
+  const [jams, setJams] = useState([]);
   const [formObject, setFormObject] = useState({
     title: "",
     author: "",
@@ -25,20 +25,20 @@ export function JamSesh() {
 
   // Load all books and store them with setBooks
   useEffect(() => {
-    loadBooks();
+    loadJams();
   }, []);
 
   // Loads all books and sets them to books
-  function loadBooks() {
-    API.getBooks()
-      .then((res) => setBooks(res.data))
+  function loadJams() {
+    API.getJams()
+      .then((res) => setJams(res.data))
       .catch((err) => console.log(err));
   }
 
   // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then((res) => loadBooks())
+  function deleteJam(id) {
+    API.deleteJam(id)
+      .then((res) => loadJams())
       .catch((err) => console.log(err));
   }
 
@@ -54,7 +54,7 @@ export function JamSesh() {
     event.preventDefault();
     if (formObject.title && formObject.author) {
       console.log("formobject", formObject);
-      API.saveBook({
+      API.saveJams({
         title: formObject.title,
         author: formObject.author,
         synopsis: formObject.synopsis,
@@ -66,7 +66,7 @@ export function JamSesh() {
             synopsis: "",
           })
         )
-        .then(() => loadBooks())
+        .then(() => loadJams())
         .catch((err) => console.log(err));
     }
   }
@@ -78,7 +78,7 @@ export function JamSesh() {
         maxwidth="lg"
         style={{
           paddingBottom: "60px",
-          backgroundColor:"#2c2836"
+          backgroundColor: "#2c2836",
         }}
       >
         <Typography
@@ -135,17 +135,17 @@ export function JamSesh() {
               style={{ width: "100%", marginTop: "50px", padding: "20px" }}
             >
               <Typography variant="h4">Find Someone You Jam With</Typography>
-              {books.length ? (
+              {jams.length ? (
                 <List>
-                  {books.map((book) => {
+                  {jams.map((jam) => {
                     return (
-                      <ListItem key={book._id}>
-                        <a href={"/books/" + book._id}>
+                      <ListItem key={jam._id}>
+                        <a href={"/jams/" + jam._id}>
                           <strong>
-                            {book.title} by {book.author}
+                            {jam.title} by {jam.author}
                           </strong>
                         </a>
-                        <DeleteBtn onClick={() => deleteBook(book._id)} />
+                        {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
                       </ListItem>
                     );
                   })}
