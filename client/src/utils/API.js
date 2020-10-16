@@ -10,12 +10,12 @@ export default {
     return axios.get("/api/jams/" + id);
   },
   // Deletes the book with the given id
-  deleteJams: function (id) {
+  deleteJam: function (id) {
     return axios.delete("/api/jams/" + id);
   },
 
   // Saves a book to the database
-  saveJams: function (jamData) {
+  saveJam: function (jamData) {
     return axios.post("/api/jams", jamData);
   },
 

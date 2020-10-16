@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { withRouter, Link } from "react-router-dom";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontfamily: 'pacifico',
+    
   },
 }));
 
@@ -36,10 +39,10 @@ export const Header = function () {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+    <div className={classes.root} style={{ color: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)" }} >
+      <AppBar position="static" style={{ backgroundColor: "#282728", height: "110px", paddingTop: "10px", fontFamily: "Pacifico" }}>
+        <Toolbar style={{ }}>
+          <Typography variant="h6" className={classes.title} style={{ fontFamily: 'pacifico', fontSize: "50px" }}>
             Jam Sesh
           </Typography>
           <div>

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { isAuthenticated } from "../lib";
 import { Redirect } from "react-router-dom";
 import { useTokenContext } from "../lib/GlobalState";
+import Footer from "./Footer";
 
 //Material UI Imports
 import "fontsource-roboto";
@@ -11,7 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Background from "../images/guitar-purple-01.png";
+import Background from "../images/guitarLicks.png";
 
 
 // Background Image 
@@ -78,6 +79,7 @@ export function LogIn(props) {
     <Redirect to={{ pathname: "/", state: { from: props.location } }} />
   ) : (
     <div style={ sectionStyle }>
+    <Container>
       <Grid container spacing={2} justify="center">
         <Grid item xs={8} sm={8}>
           <Paper style={{ width: "100%", marginTop: "120px", padding: "20px" }}>
@@ -139,7 +141,10 @@ export function LogIn(props) {
           </Paper>
         </Grid>
       </Grid>
-      {/* </Container> */}
+      </Container>
+      
+      
+      
     </div>
   );
 }

@@ -1,13 +1,16 @@
 .App {
   text-align: center;
+  
+}
+
+.headerBar {
+  font-family: 'Pacifico', cursive;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
-
 
 
 .testText {

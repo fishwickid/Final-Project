@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-const { Book, User } = require("../db/models");
+const { Jam, User } = require("../db/models");
 const path = require("path");
 const apiRoutes = require("./api");
 

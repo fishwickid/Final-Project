@@ -14,7 +14,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    console.log("create func", req);
+    console.log("create func", req.body);
     db.Jam.create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

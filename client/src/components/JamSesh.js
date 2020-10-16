@@ -5,6 +5,8 @@ import DeleteBtn from "../components/ui/DeleteBtn";
 import { Col, Row, Dontainer } from "../components/ui/Grid";
 import { List, ListItem } from "../components/ui/List";
 import { Input, TextArea, FormBtn } from "../components/ui/Form";
+import Footer from "./Footer";
+import Background from "../images/seshImage.png";
 
 // Material UI Components
 import Button from "@material-ui/core/Button";
@@ -13,6 +15,15 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+
+// Background Image
+var sectionStyle = {
+  width: "100%",
+  height: "700px",
+  backgroundImage: `url(${Background})`,
+  position: "relative",
+  objectFit: "cover",
+};
 
 export function JamSesh() {
   // Setting our component's initial state
@@ -54,47 +65,50 @@ export function JamSesh() {
     event.preventDefault();
     if (formObject.title && formObject.author) {
       console.log("formobject", formObject);
-      API.saveJams({
+      console.log("api call", API.saveJam);
+      API.saveJam({
         title: formObject.title,
         author: formObject.author,
         synopsis: formObject.synopsis,
       })
-        .then(() =>
-          setFormObject({
-            title: "",
-            author: "",
-            synopsis: "",
-          })
-        )
-        .then(() => loadJams())
+        .then((res) => loadJams())
         .catch((err) => console.log(err));
+      // .then(() =>
+      //   setFormObject({
+      //     title: "",
+      //     author: "",
+      //     synopsis: "",
+      //   })
+      // )
+      // .then(() => loadJams())
+      // .catch((err) => console.log(err));
     }
   }
 
   return (
-    <div>
+    <div style={sectionStyle}>
       <Container
         id="topSection"
         maxwidth="lg"
         style={{
           paddingBottom: "60px",
-          backgroundColor: "#2c2836",
+          color: "#2c2836",
         }}
       >
         <Typography
           className="testText"
-          variant="h2"
-          style={{ paddingTop: "50px", color: "white" }}
+          variant="h4"
+          style={{ paddingTop: "80px", color: "white", fontFamily: "roboto", fontSize: "30px", fontStyle: "bold" }}
         >
-          Welcome To Guitar Jams!
+          ORGANISE A JAM SESH AND CONNECT WITH OTHER MUSICIANS
         </Typography>
         <Grid container spacing={2} justify="center">
           <Grid item xs={12} sm={10}>
             <Paper
               style={{ width: "100%", marginTop: "50px", padding: "20px" }}
             >
-              <Typography variant="subtitle1" style={{ margin: "10px" }}>
-                Find people around you who want to jam out
+              <Typography variant="subtitle1" style={{ margin: "30px" }}>
+                Create your jam sesh by letting people know what you want kind of jam you want to organise
               </Typography>
               <form>
                 <Input
@@ -119,7 +133,7 @@ export function JamSesh() {
                   // disabled={!(formObject.author && formObject.title)}
                   onClick={handleFormSubmit}
                 >
-                  Post Your Jam Request
+                  Post Your Jam Sesh Request
                 </FormBtn>
               </form>
             </Paper>
@@ -132,9 +146,14 @@ export function JamSesh() {
         <Grid container spacing={2} justify="center">
           <Grid item xs={12} sm={10}>
             <Paper
-              style={{ width: "100%", marginTop: "50px", padding: "20px" }}
+              style={{
+                width: "100%",
+                marginTop: "100px",
+                marginBottom: "80px",
+                padding: "20px",
+              }}
             >
-              <Typography variant="h4">Find Someone You Jam With</Typography>
+              <Typography variant="h4">Connect with another jam sesh</Typography>
               {jams.length ? (
                 <List>
                   {jams.map((jam) => {
@@ -145,7 +164,7 @@ export function JamSesh() {
                             {jam.title} by {jam.author}
                           </strong>
                         </a>
-                        {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
+                        <DeleteBtn onClick={() => deleteJam(jam._id)} />
                       </ListItem>
                     );
                   })}
@@ -158,6 +177,7 @@ export function JamSesh() {
         </Grid>
         {/* </Row> */}
       </Container>
+      <Footer />
     </div>
   );
 }
