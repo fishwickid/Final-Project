@@ -7,6 +7,7 @@ import { List, ListItem } from "../components/ui/List";
 import { Input, TextArea, FormBtn } from "../components/ui/Form";
 import Footer from "./Footer";
 import Background from "../images/seshImage.png";
+import JamList from "./JamList";
 
 // Material UI Components
 import Button from "@material-ui/core/Button";
@@ -29,9 +30,9 @@ export function JamSesh() {
   // Setting our component's initial state
   const [jams, setJams] = useState([]);
   const [formObject, setFormObject] = useState({
-    title: "",
-    author: "",
-    synopsis: "",
+    jamName: "",
+    jammer: "",
+    jamDetails: "",
   });
 
   // Load all books and store them with setBooks
@@ -63,25 +64,16 @@ export function JamSesh() {
   // Then reload books from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.title && formObject.author) {
+    if (formObject.jamName && formObject.jammer) {
       console.log("formobject", formObject);
       console.log("api call", API.saveJam);
       API.saveJam({
-        title: formObject.title,
-        author: formObject.author,
-        synopsis: formObject.synopsis,
+        jamName: formObject.jamName,
+        jammer: formObject.jammer,
+        jamDetails: formObject.jamDetails,
       })
         .then((res) => loadJams())
         .catch((err) => console.log(err));
-      // .then(() =>
-      //   setFormObject({
-      //     title: "",
-      //     author: "",
-      //     synopsis: "",
-      //   })
-      // )
-      // .then(() => loadJams())
-      // .catch((err) => console.log(err));
     }
   }
 
@@ -98,7 +90,13 @@ export function JamSesh() {
         <Typography
           className="testText"
           variant="h4"
-          style={{ paddingTop: "80px", color: "white", fontFamily: "roboto", fontSize: "30px", fontStyle: "bold" }}
+          style={{
+            paddingTop: "80px",
+            color: "white",
+            fontFamily: "roboto",
+            fontSize: "30px",
+            fontStyle: "bold",
+          }}
         >
           ORGANISE A JAM SESH AND CONNECT WITH OTHER MUSICIANS
         </Typography>
@@ -108,25 +106,26 @@ export function JamSesh() {
               style={{ width: "100%", marginTop: "50px", padding: "20px" }}
             >
               <Typography variant="subtitle1" style={{ margin: "30px" }}>
-                Create your jam sesh by letting people know what you want kind of jam you want to organise
+                Create your jam sesh by letting people know what you want kind
+                of jam you want to organise
               </Typography>
               <form>
                 <Input
                   onChange={handleInputChange}
-                  name="title"
-                  placeholder="Title (required)"
-                  value={formObject.title}
+                  name="jamName"
+                  placeholder="Name your Jam Sesh (required)"
+                  value={formObject.jamName}
                 />
                 <Input
                   onChange={handleInputChange}
-                  name="author"
-                  placeholder="Author (required)"
-                  value={formObject.author}
+                  name="jammer"
+                  placeholder="Your name (required)"
+                  value={formObject.jammer}
                 />
                 <TextArea
                   onChange={handleInputChange}
-                  name="synopsis"
-                  placeholder="Synopsis (Optional)"
+                  name="jamDetails"
+                  placeholder="Tell other jammers what type of jam sesh you're looking for (Optional)"
                   value={formObject.synopsis}
                 />
                 <FormBtn
@@ -140,43 +139,7 @@ export function JamSesh() {
           </Grid>
         </Grid>
       </Container>
-
-      {/* Results Section */}
-      <Container>
-        <Grid container spacing={2} justify="center">
-          <Grid item xs={12} sm={10}>
-            <Paper
-              style={{
-                width: "100%",
-                marginTop: "100px",
-                marginBottom: "80px",
-                padding: "20px",
-              }}
-            >
-              <Typography variant="h4">Connect with another jam sesh</Typography>
-              {jams.length ? (
-                <List>
-                  {jams.map((jam) => {
-                    return (
-                      <ListItem key={jam._id}>
-                        <a href={"/jams/" + jam._id}>
-                          <strong>
-                            {jam.title} by {jam.author}
-                          </strong>
-                        </a>
-                        <DeleteBtn onClick={() => deleteJam(jam._id)} />
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-            </Paper>
-          </Grid>
-        </Grid>
-        {/* </Row> */}
-      </Container>
+      <JamList />
       <Footer />
     </div>
   );

@@ -6,3 +6,5 @@ export { JamSesh } from "./JamSesh";
 export { Navigation } from "./Navigation";
 export { PrivateRoute } from "./PrivateRoute";
 export { Header } from "./Header";
+export { JamFeed } from "./JamFeed";
+export { JamList } from "./JamList";
