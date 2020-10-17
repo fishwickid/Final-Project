@@ -15,10 +15,14 @@ server.use(passport.initialize());
 server.use("/api", router);
 server.use("/api", jamsRouter);
 
-mongoose.connect("mongodb://localhost/jamfriends", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamfriends", {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
+
+if (process.eventNames.NODE_ENV === "production") {
+  server.use(express.static("client/build"));
+}
 
 // :27017
 
