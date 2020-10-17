@@ -1,28 +1,36 @@
 import React from "react";
 
 // Material UI Components
-import Button from "@material-ui/core/Button";
 import "fontsource-roboto";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+
+
+
+// Background 
+var sectionStyle = {
+  width: "100%",
+  height: "100%",
+  backgroundColor: "#282728",
+  position: "relative",
+  padding: "20px",
+};
 
 const footer = () => {
   return (
-    <Container
-      id="topSection"
-      maxwidth="lg"
-      style={{
-        padding: "60px",
-        backgroundColor: "#282728",
-      }}
-    >
-      <Grid style={{ color: "#ffffff" }}>
-        <h4>Thanks for jamming on Jam Sesh</h4>
-      </Grid>
-    </Container>
+    <div style={sectionStyle}>
+      
+        <h4
+          style={{
+            width: "100%",
+            fontFamily: "pacifico",
+            fontSize: "23px",
+            color: "#fff",
+            letterSpacing: "1.7px",
+          }}
+        >
+          Thanks for jamming on Jam Sesh
+        </h4>
+    
+    </div>
   );
 };
 

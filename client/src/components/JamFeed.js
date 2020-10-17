@@ -32,7 +32,13 @@ export function JamFeed(props) {
         <CssBaseline />
         <Container fixed>
           <Grid>
-            <Paper style={{ margin: "90px", padding: "20px" }}>
+            <Paper style={{
+            width: "100%",
+            marginTop: "70px",
+            marginBottom: "100px",
+            padding: "20px",
+            
+          }}>
               <h1>
                 {jam.jamName} by {jam.jammer}
               </h1>
