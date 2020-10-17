@@ -36,15 +36,16 @@ const buttonStyles = makeStyles({
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     color: "white",
     height: 35,
-    width: "30%",
-    padding: "0 30px",
+    width: "60%",
+    padding: "15px 15px",
     marginBottom: "30px",
+    marginTop: "20px",
   },
 });
 
 const cardStyles = makeStyles({
   root: {
-    background: "linear-gradient(45deg, #f8f8f8 30%, #f2f2f2 90%)",
+    background: "linear-gradient(45deg, #f8f8f8 30%, #f4f4f4 90%)",
     border: 0,
     borderRadius: 25,
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
@@ -61,7 +62,11 @@ export function JamSesh() {
   const cardStyle = cardStyles();
   const [formObject, setFormObject] = useState({
     jamName: "",
+    email: "",
     jammer: "",
+    instrument: "",
+    whatLearn: "",
+    whatTeach: "",
     jamDetails: "",
   });
 
@@ -99,7 +104,11 @@ export function JamSesh() {
       console.log("api call", API.saveJam);
       API.saveJam({
         jamName: formObject.jamName,
+        email: formObject.email,
         jammer: formObject.jammer,
+        instrument: formObject.instrument,
+        whatLearn: formObject.whatLearn,
+        whatTeach: formObject.whatTeach,
         jamDetails: formObject.jamDetails,
       })
         .then((res) => loadJams())
@@ -146,18 +155,49 @@ export function JamSesh() {
               jam you want to organise
             </Typography>
             <form>
-              <Input
-                onChange={handleInputChange}
-                name="jamName"
-                placeholder="Name your Jam Sesh (required)"
-                value={formObject.jamName}
-              />
+              <Typography>ENTER YOUR NAME</Typography>
               <Input
                 onChange={handleInputChange}
                 name="jammer"
                 placeholder="Your name (required)"
                 value={formObject.jammer}
               />
+              <Typography>EMAIL TO CONNECT WITH JAMMERS</Typography>
+              <Input
+                onChange={handleInputChange}
+                name="email"
+                placeholder="ex. maverick93@gmail.com (required)"
+                value={formObject.email}
+              />
+              <Typography>GIVE YOUR JAM SESH A NAME</Typography>
+              <Input
+                onChange={handleInputChange}
+                name="jamName"
+                placeholder="ex. Punk Rock Passion (required)"
+                value={formObject.jamName}
+              />
+              <Typography>WHAT'S YOUR INSTRUMENT?</Typography>
+              <Input
+                onChange={handleInputChange}
+                name="instrument"
+                placeholder="ex. guitar, drums, vocals"
+                value={formObject.instrument}
+              />
+              <Typography>CAN YOU TEACH SOMETHING?</Typography>
+              <Input
+                onChange={handleInputChange}
+                name="whatTeach"
+                placeholder="ex. Would love to learn Pentatonic Scales"
+                value={formObject.whatTeach}
+              />
+              <Typography>WHAT WOULD YOU LIKE TO LEARN?</Typography>
+              <Input
+                onChange={handleInputChange}
+                name="whatLearn"
+                placeholder="ex. Can teach slide guitar"
+                value={formObject.whatLearn}
+              />
+              <Typography>WHAT DO YOU WANT TO JAM ABOUT</Typography>
               <TextArea
                 onChange={handleInputChange}
                 name="jamDetails"
@@ -182,7 +222,6 @@ export function JamSesh() {
           marginTop: "20px",
           marginBottom: "30px",
           padding: "20px",
-          
         }}
       >
         <Paper
@@ -210,11 +249,20 @@ export function JamSesh() {
                 return (
                   <Card className={cardStyle.root}>
                     <CardContent>
-                      <Typography key={jam._id}>
-                        {jam.jamName} by {jam.jammer}
+                      <Typography
+                        key={jam._id}
+                        style={{ fontWeight: "bold", fontSize: "24px" }}
+                      >
+                        {jam.jamName}
                       </Typography>
-                      <Button className={buttonStyle.root}>
-                        <Link to={"/jams/" + jam._id}>SEE JAM REQUEST</Link>
+                      <Typography key={jam._id}>
+                        Jam Sesh Host: {jam.jammer}
+                      </Typography>
+                      <Button
+                        href={"/jams/" + jam._id}
+                        className={buttonStyle.root}
+                      >
+                        SEE JAM REQUEST
                       </Button>
                       <DeleteBtn onClick={() => deleteJam(jam._id)} />
                     </CardContent>
