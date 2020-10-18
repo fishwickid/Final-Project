@@ -22,11 +22,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
   useFindAndModify: false,
 });
 
-if (process.eventNames.NODE_ENV === "production") {
-  server.use(express.static("client/build"));
-}
-
-// :27017
+// if (process.eventNames.NODE_ENV === "production") {
+//   server.use(express.static("client/build"));
+// }
 
 server.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
