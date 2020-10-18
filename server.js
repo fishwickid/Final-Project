@@ -17,11 +17,11 @@ server.use("/api", jamsRouter);
 
 if (process.env.NODE_ENV === "production") {
   server.use(express.static("client/build"));
-
-  server.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
 }
+
+router.use(function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
   useNewUrlParser: true,
@@ -33,3 +33,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
 server.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
 });
+
+// server.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
