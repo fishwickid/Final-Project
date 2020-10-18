@@ -217,11 +217,17 @@ export function JamSesh() {
 
       {/* Jam List starts here */}
       <Container
+      id="resultsContainer"
+      width="100%"
+      boxShadow="none"
         style={{
-          width: "100%",
+          objectPosition: "center",
           marginTop: "20px",
-          marginBottom: "30px",
-          padding: "20px",
+          marginBottom: "10px",
+          paddingTop: "20px",
+          paddingBottom: "100px",
+          boxShadow: "none",
+          border: "none",
         }}
       >
         <Paper
@@ -264,7 +270,7 @@ export function JamSesh() {
                       >
                         SEE JAM REQUEST
                       </Button>
-                      <DeleteBtn onClick={() => deleteJam(jam._id)} />
+                      {/* <DeleteBtn onClick={() => deleteJam(jam._id)} /> */}
                     </CardContent>
                   </Card>
                 );

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { isAuthenticated } from "../lib";
 import { useTokenContext } from "../lib/GlobalState";
 import { Redirect } from "react-router-dom";
+import Footer from "./Footer";
 
 //Material UI Imports
 import "fontsource-roboto";
@@ -15,7 +16,7 @@ import Background from "../images/guitarLicks.png";
 
 var sectionStyle = {
   width: "100%",
-  height: "700px",
+  height: "900px",
   backgroundImage: `url(${Background})`,
   position: "relative",
   objectFit: "cover",
@@ -132,6 +133,11 @@ export function SignUp(props) {
           </Paper>
         </Grid>
       </Grid>
+      <div style={{ marginTop: "190px" }}>
+      <Grid>
+          <Footer style={{ paddingTop: "100px" }}/>
+        </Grid>
+        </div>
     </div>
   );
 }

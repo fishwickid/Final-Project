@@ -8,9 +8,10 @@ import "fontsource-roboto";
 // Background 
 var sectionStyle = {
   width: "100%",
-  height: "100%",
+  height: "100px",
   backgroundColor: "#282728",
-  position: "relative",
+  position: "fixed",
+  bottom: "0",
   padding: "20px",
 };
 

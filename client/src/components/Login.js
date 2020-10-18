@@ -18,7 +18,7 @@ import Background from "../images/guitarLicks.png";
 // Background Image 
 var sectionStyle = {
   width: "100%",
-  height: "700px",
+  height: "900px",
   backgroundImage: `url(${Background})`,
   position: "relative",
   objectFit: "cover",
@@ -140,6 +140,7 @@ export function LogIn(props) {
             </form>
           </Paper>
         </Grid>
+        <Footer />
       </Grid>
       </Container>
       
