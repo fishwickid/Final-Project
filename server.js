@@ -15,9 +15,11 @@ server.use(passport.initialize());
 server.use("/api", router);
 server.use("/api", jamsRouter);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamfriends", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 if (process.eventNames.NODE_ENV === "production") {
