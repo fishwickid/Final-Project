@@ -76,7 +76,7 @@ export function LogIn(props) {
   };
 
   return isLoggedIn ? (
-    <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+    <Redirect to={{ pathname: "/jamsesh", state: { from: props.location } }} />
   ) : (
     <div style={ sectionStyle }>
     <Container>
