@@ -1,8 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "guitar sesh final project",
   "main": "server.js",
+  "engines": {
+    "node": "10.x"
+  }
+},
+  
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
