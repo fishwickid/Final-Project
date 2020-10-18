@@ -13,11 +13,6 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
   },
-  // bullet: {
-  //   display: '',
-  //   margin: '30 30px',
-  //   transform: 'scale(0.8)',
-  // },
   title: {
     fontSize: 20,
   },

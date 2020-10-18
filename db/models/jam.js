@@ -15,8 +15,3 @@ const jamSchema = new Schema({
 const Jam = mongoose.model("Jam", jamSchema);
 
 module.exports = Jam;
-
-// title: { type: String, required: true },
-// author: { type: String, required: true },
-// synopsis: String,
-// date: { type: Date, default: Date.now }

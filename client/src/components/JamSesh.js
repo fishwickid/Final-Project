@@ -56,7 +56,7 @@ const cardStyles = makeStyles({
 });
 
 export function JamSesh() {
-  // Setting our component's initial state
+  // Initial state
   const [jams, setJams] = useState([]);
   const buttonStyle = buttonStyles();
   const cardStyle = cardStyles();
@@ -70,33 +70,33 @@ export function JamSesh() {
     jamDetails: "",
   });
 
-  // Load all books and store them with setBooks
+  // Loadall the jam sessions
   useEffect(() => {
     loadJams();
   }, []);
 
-  // Loads all books and sets them to books
+  // Loads recorded jam sessions
   function loadJams() {
     API.getJams()
       .then((res) => setJams(res.data))
       .catch((err) => console.log(err));
   }
 
-  // Deletes a book from the database with a given id, then reloads books from the db
+  // Deletes jams -- currently not activated in code -- a work in progress function
   function deleteJam(id) {
     API.deleteJam(id)
       .then((res) => loadJams())
       .catch((err) => console.log(err));
   }
 
-  // Handles updating component state when the user types into the input field
+  // Handles user input form form
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value });
   }
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // Saves then reloads the jam sessions
+  
   function handleFormSubmit(event) {
     event.preventDefault();
     if (formObject.jamName && formObject.jammer) {

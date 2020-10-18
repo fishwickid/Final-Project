@@ -1,6 +1,6 @@
 const db = require("../db/models");
 
-// Defining methods for the booksController
+// Defining methods for the jamsController
 module.exports = {
   findAll: function (req, res) {
     db.Jam.find(req.query)

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Col, Row } from "../components/ui/Grid";
-import Jumbotron from "../components/ui/Jumbotron";
 import API from "../utils/API";
 import Footer from "./Footer";
 
@@ -37,8 +35,6 @@ export function JamFeed(props) {
   const [jam, setJam] = useState({});
   const buttonStyle = buttonStyles();
 
-  // When this component mounts, grab the book with the _id of props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   const { id } = useParams();
   useEffect(() => {
     API.getJam(id)

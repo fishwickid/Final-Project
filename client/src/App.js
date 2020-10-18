@@ -18,7 +18,7 @@ function App() {
         {/* <Navigation props={{ authenticated: authenticated }} /> */}
         <main>
           <Switch>
-            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/" component={JamSesh} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={LogIn} />
             <Route path="/logout" component={LogOut} />

@@ -50,30 +50,4 @@ router.get(
 // API Routes
 router.use("/api", apiRoutes);
 
-
-
-// Jam Sesh Routing
-
-// router.get("/api/books", (request, response) => {
-//   console.log("request:" + req.query);
-//   Book.find(req.query)
-//     .sort({ date: -1 })
-//     .then((dbModel) => res.json(dbModel))
-//     .catch((err) => res.status(422).json(err));
-// });
-
-// router.post("/createBook/:formData", function (request, response) {
-//   console.log("params", request.params.formData);
-//   const book = new Book({
-//     title: request.body.title,
-//     author: request.body.author,
-//     synopsis: request.body.synopsis,
-//   });
-//   console.log(book);
-//   book
-//     .save()
-//     .then((dbModel) => response.json(dbModel))
-//     .catch((err) => response.status(422).json(err));
-// });
-
 module.exports = router;
