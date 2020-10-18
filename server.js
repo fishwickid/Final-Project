@@ -17,6 +17,10 @@ server.use("/api", jamsRouter);
 
 if (process.env.NODE_ENV === "production") {
   server.use(express.static("client/build"));
+
+  server.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
@@ -25,7 +29,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
 
 server.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
