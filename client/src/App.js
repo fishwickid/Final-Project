@@ -7,9 +7,9 @@ import * as components from "./components";
 
 import { TokenProvider } from "./lib/GlobalState";
 
-const { Home, SignUp, LogIn, LogOut, JamSesh, Navigation, PrivateRoute, Header, JamFeed } = components;
+const { Home, SignUp, LogIn, LogOut, JamSesh, PrivateRoute, Header, JamFeed } = components;
 function App() {
-  const [authenticated, setAuthenticated] = useState(isAuthenticated);
+  const [authenticated] = useState(isAuthenticated);
 
   return (
     <div className="App">
