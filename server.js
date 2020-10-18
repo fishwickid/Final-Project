@@ -15,6 +15,10 @@ server.use(passport.initialize());
 server.use("/api", router);
 server.use("/api", jamsRouter);
 
+if (process.env.NODE_ENV === "production") {
+  server.use(express.static("client/build"));
+}
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,9 +26,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jamsesh", {
   useFindAndModify: false,
 });
 
-// if (process.eventNames.NODE_ENV === "production") {
-//   server.use(express.static("client/build"));
-// }
 
 server.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
