@@ -96,7 +96,7 @@ export function JamSesh() {
   }
 
   // Saves then reloads the jam sessions
-  
+
   function handleFormSubmit(event) {
     event.preventDefault();
     if (formObject.jamName && formObject.jammer) {
@@ -217,9 +217,9 @@ export function JamSesh() {
 
       {/* Jam List starts here */}
       <Container
-      id="resultsContainer"
-      width="100%"
-      boxShadow="none"
+        id="resultsContainer"
+        width="100%"
+        boxShadow="none"
         style={{
           objectPosition: "center",
           marginTop: "20px",
